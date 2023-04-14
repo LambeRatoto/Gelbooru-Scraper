@@ -30,7 +30,7 @@ function gelbooru(tag, end) {
                                         const scriptContent = $('script').text()
                                         const match = scriptContent.match(/https:\/\/[^\s]+\.(png|jpe?g|gif)/);
                                         const imageURL = match && match[0]; // extract the first match
-                                            resolve(imageURL);
+                                        resolve(imageURL);
                                     })
                                     .catch(error => {
                                         reject(error);
@@ -73,13 +73,13 @@ const rl = readline.createInterface({
 rl.question('Tag?\nSpasi untuk beda tag\n ', (tag) => {
     rl.question('Banyaknya?\n', (hm) => {
         console.log("Tunggu Sebentar....")
-gelbooru(tag, 100).then((result) => {
-    const fileContent = result.join('\n');
-    fs.writeFileSync(`./output/${tag.replace(/\s+/g, '_')}.txt`, fileContent);
-    console.log(`Saved ${result.length} links to ${tag.replace(/\s+/g, '_')}.txt`);
-}).catch((err) => {
-    console.error('Failed to scrape links:', err);
-});
-rl.close();
-});
+        gelbooru(tag, 100).then((result) => {
+            const fileContent = result.join('\n');
+            fs.writeFileSync(`./output/${tag.replace(/\s+/g, '_')}.txt`, fileContent);
+            console.log(`Saved ${result.length} links to ${tag.replace(/\s+/g, '_')}.txt`);
+        }).catch((err) => {
+            console.error('Failed to scrape links:', err);
+        });
+        rl.close();
+    });
 });
